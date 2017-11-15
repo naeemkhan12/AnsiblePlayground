@@ -5,11 +5,11 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
   config.vm.box_check_update = false
     # disable vagrant shared key checking for ansible to work with
-  config.ssh.insert_key = false
+  # config.ssh.insert_key = false
   config.vm.define "database" do |database|
     database.vm.box_check_update = false
-    # database.vm.hostname="web"
-    database.vm.network "private_network", ip: "192.168.50.20"
+    database.vm.hostname="web"
+    database.vm.network "private_network", ip: "192.168.33.20"
      database.vm.provider "virtualbox" do |vb|
       # Do not load the command line GUI
       vb.gui = false
@@ -20,9 +20,9 @@ Vagrant.configure(2) do |config|
     end
   end
   config.vm.define "web" do |web|
-    # web.vm.hostname="web"
+    web.vm.hostname="web"
     web.vm.box_check_update = false
-    web.vm.network "private_network", ip: "192.168.50.30"
+    web.vm.network "private_network", ip: "192.168.33.30"
     web.vm.provider "virtualbox" do |vb|
       vb.gui = false
       vb.name = "web"
