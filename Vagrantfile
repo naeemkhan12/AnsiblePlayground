@@ -8,6 +8,7 @@ Vagrant.configure(2) do |config|
   config.ssh.insert_key = false
   config.vm.define "database" do |database|
     database.vm.box_check_update = false
+    # database.vm.hostname="web"
     database.vm.network "private_network", ip: "192.168.50.20"
      database.vm.provider "virtualbox" do |vb|
       # Do not load the command line GUI
@@ -19,7 +20,7 @@ Vagrant.configure(2) do |config|
     end
   end
   config.vm.define "web" do |web|
-    web.vm.hostname="web"
+    # web.vm.hostname="web"
     web.vm.box_check_update = false
     web.vm.network "private_network", ip: "192.168.50.30"
     web.vm.provider "virtualbox" do |vb|

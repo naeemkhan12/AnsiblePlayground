@@ -1,7 +1,8 @@
 ---
- - hosts: datacenter
+ - hosts: webservers
    sudo: yes
    tasks:
    - name: update the systems
      apt:  update_cache=yes
+     apt:  name=nginx state=present enablerepo=nginx
 #     when: ansible1_os_family == 'Debian'

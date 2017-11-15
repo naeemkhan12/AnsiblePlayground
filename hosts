@@ -9,4 +9,4 @@ dbservers
 webservers
 [datacenter:vars]
 ansible_ssh_hostname=vagrant
-ansible_ssh_pass=vagrant
+ansible_ssh_password=vagrant
