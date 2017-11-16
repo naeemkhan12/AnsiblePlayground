@@ -1,8 +1,25 @@
 ---
- - hosts: webservers
+ - hosts: datacenter
    sudo: yes
    tasks:
    - name: update the systems
      apt:  update_cache=yes
-     apt:  name=nginx state=present enablerepo=nginx
+ - hosts: webservers
+   sudo: yes
+   tasks:
+   - name: install web related packages
+     apt:  state=present name={{ item }}
+     with_items:
+     - git
+     - nginx
+     - lynx
+     - nano
+ - hosts: dbservers
+   sudo: yes
+   tasks:
+   - name: install packages to setup dbservers
+     apt:  state=present name={{ item }}
+     with_items:
+     - git
+
 #     when: ansible1_os_family == 'Debian'
