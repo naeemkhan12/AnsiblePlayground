@@ -8,7 +8,7 @@ Vagrant.configure(2) do |config|
   # config.ssh.insert_key = false
   config.vm.define "database" do |database|
     database.vm.box_check_update = false
-    database.vm.hostname="web"
+    database.vm.hostname="db"
     database.vm.network "private_network", ip: "192.168.33.20"
      database.vm.provider "virtualbox" do |vb|
       # Do not load the command line GUI
@@ -31,8 +31,9 @@ Vagrant.configure(2) do |config|
     end
   end
   # run ansible after creation of machines
-  config.vm.provision "ansible" do |ansible|
-    ansible.verbose = "v"
-    ansible.playbook = "playbook.yml"
-  end
+  # config.vm.provision "ansible" do |ansible|
+  #   ansible.verbose = "v"
+  #   ansible.playbook = "playbook.yml"
+  #   ansible.inventory_path = "inventory"
+  # end
 end
